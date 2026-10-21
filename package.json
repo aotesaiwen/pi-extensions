@@ -1,0 +1,21 @@
+{
+  "name": "aotesaiwen-pi-extensions",
+  "private": true,
+  "type": "module",
+  "description": "Personal Pi extensions: interactive questions, background agents, browser tools, snippets, web search, and a custom header.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aotesaiwen/pi-extensions.git"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --test tests/*.test.ts"
+  },
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "devDependencies": {
+    "@mariozechner/pi-tui": "0.73.1",
+    "@sinclair/typebox": "^0.34.52",
+    "typebox": "^1.4.2"
+  }
+}

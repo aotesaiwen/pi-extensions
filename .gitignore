@@ -1,0 +1,20 @@
+# Credentials and private configuration (at any depth)
+auth.json
+auth.*.json
+credentials.json
+.env
+.env.*
+*.pem
+*.key
+
+# Dependencies and runtime data
+node_modules/
+.profile/
+.cache/
+.pi/
+async-subagents/
+!extensions/async-subagents/
+*.log
+*.jsonl
+coverage/
+.DS_Store
