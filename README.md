@@ -1,6 +1,6 @@
-# Pi extensions
+# Pi extensions and skills
 
-Personal extensions for [Pi](https://github.com/earendil-works/pi), maintained by [aotesaiwen](https://github.com/aotesaiwen).
+Personal extensions and skills for [Pi](https://github.com/earendil-works/pi), maintained by [aotesaiwen](https://github.com/aotesaiwen).
 
 ## Included extensions
 
@@ -12,6 +12,15 @@ Personal extensions for [Pi](https://github.com/earendil-works/pi), maintained b
 | [`kirki-header.ts`](extensions/kirki-header.ts) | Responsive Kirki welcome banner with directory, model, and Pi version. Toggle with `/kirki-header`. |
 | [`prompt-snippets`](extensions/prompt-snippets/) | Per-message prompt snippets, toggled with `/snippets` or **Alt+S**. |
 | [`web-search`](extensions/web-search/) | DeepSeek-powered `web_search` with exact phrases, exclusions, and site filtering. Requires your own API key. |
+
+## Included skills
+
+| Skill | What it adds |
+| --- | --- |
+| [`pdf-reader`](skills/pdf-reader/) | PDF triage, text extraction, search, and page rendering using four Python scripts and PyMuPDF. |
+| [`web-debug`](skills/web-debug/) | Live-browser debugging playbooks for authentication, requests, storage, forms, and frontend verification. Requires the browser extension with `/browser on`. |
+
+Only these two remaining personal skills are included; the removed taste-skill collection is not included.
 
 ## Install manually
 
@@ -65,6 +74,28 @@ chmod 600 ~/.pi/agent/extensions/web-search/auth.json
 No API keys are included in this repository. The key is read from this file, not from environment variables. See [web search setup](extensions/web-search/README.md).
 
 Restart Pi or run `/reload` after installation.
+
+## Install the skills
+
+From the cloned repository root (back up existing copies first):
+
+```bash
+mkdir -p ~/.pi/agent/skills
+cp -R skills/pdf-reader skills/web-debug ~/.pi/agent/skills/
+```
+
+The PDF reader needs Python 3.10+ and its own local environment:
+
+```bash
+python3 -m venv ~/.pi/agent/skills/pdf-reader/.venv
+~/.pi/agent/skills/pdf-reader/.venv/bin/pip install -r ~/.pi/agent/skills/pdf-reader/requirements.txt
+```
+
+The virtual environment and generated PDF images are not distributed. Rendering currently writes to `/tmp/pi-pdf-*`; treat rendered documents as private and remove them when no longer needed. The scripts target a Unix-like environment.
+
+The web-debug skill contains instructions only. Install and enable the [browser extension](extensions/browser/README.md) to use its tools. Its examples can expose credentials from browser storage or network headers; inspect only the data you need and do not publish session logs or exports containing secrets.
+
+Run `/reload` or restart Pi to discover the skills. You can invoke them explicitly with `/skill:pdf-reader` or `/skill:web-debug`.
 
 ## Tests
 

@@ -9,6 +9,10 @@ credentials.json
 
 # Dependencies and runtime data
 node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
 .profile/
 .cache/
 .pi/
